@@ -5,7 +5,13 @@
   <h1 id="odgovor">Blah blah, skripta ce ovo da promeni.</h1>
   
   <script>
-    document.getElementById("odgovor").innerHTML = "Imaš fore do 5 popodne.";
+  	var d = new Date();
+  	var h = d.getHours();
+  	if (h >= 5 && h < 17) {
+    	document.getElementById("odgovor").innerHTML = "Imaš fore do 5 popodne. Uhvati dan!";
+  	} else {
+    	document.getElementById("odgovor").innerHTML = "Nikako buraz, zakasnio si.";
+  	}
   </script> 
   
 </body>
