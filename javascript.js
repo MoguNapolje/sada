@@ -1,4 +1,4 @@
-$.get("http://ipinfo.io", function (response) {
+$.get("https://ipinfo.io", function (response) {
     // $("#ip").html("IP: " + response.ip);
     console.log(response.city, response.country);
 
