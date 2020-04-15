@@ -9,6 +9,7 @@ $(document).ready(function() {
 
 	    if (response.country !== "RS") {
 	    	$("#odgovor").html("Mozes tebra, ti ne zivis u Srbijici majci!");
+	    	$("#odgovor_vpn").html("Osim ako koristis VPN, onda nemam pojma gde si.");
 	    } else {
 	    	$("#odgovor_vpn").hide();
 	    	var d = new Date();
