@@ -10,8 +10,7 @@ $(document).ready(function() {
 	    // $("#ip").html("IP: " + response.ip);
 	    console.log(response.city, response.country);
 
-		// todo pokazi lepo srpsku neosisanu latinicu
-	    $("#grad").html("Nalazis se u  " + response.city + ", " + response.region);
+	    $("#grad").html("Nalaziš se u  " + response.city + ", " + response.region);
 
 	    if (daLiSiUSrbiji(response.country)) {
 	    	$("#odgovor").html(mozesGastosu);
@@ -24,7 +23,6 @@ $(document).ready(function() {
   				$("#odgovor").html(odricanOdgovor);
   			}
 	    }
-	    // $("#zemlja").html("Kod zemlje: " + response.country);
 	    // $("#details").html(JSON.stringify(response, null, 4));
 	}, "jsonp");
 
