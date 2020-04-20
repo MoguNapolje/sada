@@ -18,9 +18,9 @@ $(document).ready(function() {
 	    } else {
 	    	$("#odgovor_vpn").hide();
   			if (daLiJePolicijskiCas) {
-    			$("#odgovor").html(potvrdanOdgovor);
+    			$("#odgovor").html(odricanOdgovor);
   			} else {
-  				$("#odgovor").html(odricanOdgovor);
+  				$("#odgovor").html(potvrdanOdgovor);
   			}
 	    }
 	    // $("#details").html(JSON.stringify(response, null, 4));
