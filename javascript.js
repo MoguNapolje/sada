@@ -1,3 +1,9 @@
+var mozesGastosu = "Mozes tebra, ti ne zivis u Srbijici majci";
+var vpnGastos = "Osim ako koristis VPN, onda nemam pojma gde si.";
+
+var potvrdanOdgovor = "Imaš fore do 6 uveče. Uhvati dan!";
+var odricanOdgovor = "Nikako buraz, zakasnio si.";
+
 $(document).ready(function() {
 
 	$.get("https://ipinfo.io", function (response) {
@@ -7,17 +13,15 @@ $(document).ready(function() {
 		// todo pokazi lepo srpsku neosisanu latinicu
 	    $("#grad").html("Nalazis se u  " + response.city + ", " + response.region);
 
-	    if (response.country !== "RS") {
-	    	$("#odgovor").html("Mozes tebra, ti ne zivis u Srbijici majci!");
-	    	$("#odgovor_vpn").html("Osim ako koristis VPN, onda nemam pojma gde si.");
+	    if (daLiSiUSrbiji(response.country)) {
+	    	$("#odgovor").html(mozesGastosu);
+	    	$("#odgovor_vpn").html(vpnGastos);
 	    } else {
 	    	$("#odgovor_vpn").hide();
-	    	var d = new Date();
-  			var h = d.getHours();
-  			if (h >= 5 && h < 18) {
-    			$("#odgovor").html("Imaš fore do 6 uveče. Uhvati dan!");
+  			if (daLiJePolicijskiCas) {
+    			$("#odgovor").html(potvrdanOdgovor);
   			} else {
-  				$("#odgovor").html("Nikako buraz, zakasnio si.");
+  				$("#odgovor").html(odricanOdgovor);
   			}
 	    }
 	    // $("#zemlja").html("Kod zemlje: " + response.country);
@@ -26,3 +30,13 @@ $(document).ready(function() {
 
 
 });
+
+function daLiSiUSrbiji(zemljinKod) {
+	 return zemljinKod !== "RS"
+}
+
+function daLiJePolicijskiCas() {
+	var d = new Date();
+  	var h = d.getHours();
+  	return h >= 5 && h < 18;
+}
