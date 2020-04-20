@@ -14,8 +14,8 @@ $(document).ready(function() {
 	    	$("#odgovor_vpn").hide();
 	    	var d = new Date();
   			var h = d.getHours();
-  			if (h >= 5 && h < 17) {
-    			$("#odgovor").html("Imaš fore do 5 popodne. Uhvati dan!");
+  			if (h >= 5 && h < 18) {
+    			$("#odgovor").html("Imaš fore do 6 uveče. Uhvati dan!");
   			} else {
   				$("#odgovor").html("Nikako buraz, zakasnio si.");
   			}
