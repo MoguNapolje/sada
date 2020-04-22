@@ -17,7 +17,9 @@ $(document).ready(function() {
 	    	$("#odgovor_vpn").html(vpnGastos);
 	    } else {
 	    	$("#odgovor_vpn").hide();
-  			if (daLiJePolicijskiCas) {
+	    	console.log(" policijski cas aktivan - " + daLiJePolicijskiCas());
+
+  			if (daLiJePolicijskiCas()) {
     			$("#odgovor").html(odricanOdgovor);
   			} else {
   				$("#odgovor").html(potvrdanOdgovor);
@@ -36,5 +38,5 @@ function daLiSiUSrbiji(zemljinKod) {
 function daLiJePolicijskiCas() {
 	var d = new Date();
   	var h = d.getHours();
-  	return h >= 5 && h < 18;
+  	return (h < 5) && (h >= 18);
 }
