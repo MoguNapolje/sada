@@ -1,8 +1,9 @@
 var mozesGastosu = "Mozes tebra, ti ne zivis u Srbijici majci";
 var vpnGastos = "Osim ako koristis VPN, onda nemam pojma gde si.";
 
-var potvrdanOdgovor = "Imaš fore do 6 uveče. Uhvati dan!";
-var odricanOdgovor = "Nikako buraz, zakasnio si.";
+var odgovorZaSloboduKretanja = "Imaš fore do 6 uveče. Uhvati dan!";
+var odgovorZaZabranuKretanja = "Nikako buraz, zakasnio si.";
+var odgovorZaZabranuKretanjaVikendom = "Nikako buraz, ovaj vikend sediš kod kuće.";
 
 $(document).ready(function() {
 
@@ -18,11 +19,16 @@ $(document).ready(function() {
 	    } else {
 	    	$("#odgovor_vpn").hide();
 	    	console.log(" policijski cas aktivan - " + daLiJePolicijskiCas());
+	    	console.log(" daLiJeVikend - " + daLiJeVikend());
 
-  			if (daLiJePolicijskiCas()) {
-    			$("#odgovor").html(odricanOdgovor);
+  			if (imaLiVikendZabrane() && daLiJeVikend()) {
+    			$("#odgovor").html(odgovorZaZabranuKretanjaVikendom);
   			} else {
-  				$("#odgovor").html(potvrdanOdgovor);
+	  			if (daLiJePolicijskiCas()) {
+    				$("#odgovor").html(odgovorZaZabranuKretanja);
+  				} else {
+  					$("#odgovor").html(odgovorZaSloboduKretanja);
+  				}
   			}
 	    }
 	    // $("#details").html(JSON.stringify(response, null, 4));
@@ -38,5 +44,17 @@ function daLiSiUSrbiji(zemljinKod) {
 function daLiJePolicijskiCas() {
 	var d = new Date();
   	var h = d.getHours();
-  	return (h < 5) && (h >= 18);
+  	return ((h < 5) || (h >= 18));
+}
+
+function daLiJeVikend() {
+	var vreme = new Date();
+  	var dan = vreme.getDay();
+  	// 0 je nedelja, 6 je subota
+  	return (dan === 0 || dan === 6); 
+}
+
+function imaLiVikendZabrane() {
+	// pogledati na Tv-u 
+  	return false;
 }
