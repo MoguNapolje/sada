@@ -1,6 +1,8 @@
 var mozesGastosu = "Mozes tebra, ti ne zivis u Srbijici majci";
 var vpnGastos = "Osim ako koristis VPN, onda nemam pojma gde si.";
 
+
+var odgovorZaPotpunuSlobodu = "Možeš! Uhvati dan, uhvati noć, uhvati zlatnu ribicu!";
 var odgovorZaSloboduKretanja = "Imaš fore do 6 uveče. Uhvati dan!";
 var odgovorZaZabranuKretanja = "Nikako buraz, zakasnio si.";
 var odgovorZaZabranuKretanjaVikendom = "Nikako buraz, ovaj vikend sediš kod kuće.";
@@ -21,15 +23,19 @@ $(document).ready(function() {
 	    	console.log(" policijski cas aktivan - " + daLiJePolicijskiCas());
 	    	console.log(" daLiJeVikend - " + daLiJeVikend());
 
+		    if (imaLiSlobode()) {
+    			$("#odgovor").html(odgovorZaPotpunuSlobodu);
+		    } else {
   			if (imaLiVikendZabrane() && daLiJeVikend()) {
-    			$("#odgovor").html(odgovorZaZabranuKretanjaVikendom);
+    			    $("#odgovor").html(odgovorZaZabranuKretanjaVikendom);
   			} else {
 	  			if (daLiJePolicijskiCas()) {
-    				$("#odgovor").html(odgovorZaZabranuKretanja);
+    				    $("#odgovor").html(odgovorZaZabranuKretanja);
   				} else {
-  					$("#odgovor").html(odgovorZaSloboduKretanja);
+  				    $("#odgovor").html(odgovorZaSloboduKretanja);
   				}
   			}
+		    }
 	    }
 	    // $("#details").html(JSON.stringify(response, null, 4));
 	}, "jsonp");
@@ -73,4 +79,9 @@ function daLiJeVikend() {
 function imaLiVikendZabrane() {
 	// pogledati na Tv-u 
   	return false;
+}
+
+function imaLiSlobode() {
+	// pogledati na Tv-u 
+  	return true;
 }
